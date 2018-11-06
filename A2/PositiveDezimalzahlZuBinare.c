@@ -1,5 +1,5 @@
 /*
- * Positive Dezimalzahl in Binär umrechnen
+ * Positive Dezimalzahl in Binär umrechnen 
  */
 #include <stdio.h>
 #include <stdint.h>
