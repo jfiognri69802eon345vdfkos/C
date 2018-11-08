@@ -24,4 +24,5 @@ int main() { // Start des Programms
 
    printf("\n\nProgramm beendet\n"); // Programmende ausgeben
    return(0); // Programm hatte keine internen Fehler.
+   
 }
