@@ -9,7 +9,7 @@ double fspeicher = 1.0;
 
         do{
             eold = e;
-            e = (1.0/fspeicher);
+            e = eold + (1.0/fspeicher);
             i ++;
             fspeicher = fspeicher * i;
         }while (e!=eold);
