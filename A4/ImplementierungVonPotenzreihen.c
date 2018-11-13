@@ -4,9 +4,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
-// double sinus(double);
-// double power(double, int16_t);
-// uint32_t fakultaet(uint16_t);
 
 uint32_t fakultaet(uint16_t zahl){
    uint32_t erg = 1;
