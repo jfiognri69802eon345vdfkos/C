@@ -11,7 +11,7 @@ int main() {
    double gesamtErgebnisvorher = gesamtErgebnis-1;
    printf("Start\n\n");
 
-   for (int i = 0; gesamtErgebnisvorher != gesamtErgebnis; i++) {
+   for (int i = 1; gesamtErgebnisvorher != gesamtErgebnis; i++) {
      gesamtErgebnisvorher = gesamtErgebnis;
      vorherigerWert = (-vorherigerWert)*(eingabe*eingabe)/((2*i+1)*(2*i));
      gesamtErgebnis += vorherigerWert;
