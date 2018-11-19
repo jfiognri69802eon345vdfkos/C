@@ -58,7 +58,7 @@ void ArkusTangens(double eingabe){
    } else {
       printf("Au\xE1 erhalb vom Eingabebereich \x5B\x2D 1, 1 \x5D vom Arkustangens\n");
    }
-}
+} /* ArkusTangens */
 
 
 void Sinus(double eingabe){
