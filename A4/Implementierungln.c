@@ -6,9 +6,10 @@
 
 int main() {
    // Variablen deklarieren
-   double eingabe = 1.5;//M_PI/8; // Eingabewert x ∈ (0,2]
+   double eingabe = M_PI/8; // Eingabewert x ∈ (0,2]
    double ergebnis = log(eingabe);
    double potenz = eingabe-1;
+   double potenzreihe = potenz;
    double gesamtErgebnis = eingabe - 1;
    double gesamtErgebnisvorher = gesamtErgebnis - 1;
    int vorzeichen = 1;
@@ -21,9 +22,9 @@ int main() {
       }else{
          vorzeichen = 1;
       }
-      potenz *= potenz; // VorherigenWert aktualisieren
-      gesamtErgebnis += vorzeichen*potenz/i; // Ergebnisse aufsummieren
-      printf("%3d -> %3.25f - %2.2f %%\n", i, gesamtErgebnis, ((ergebnis - gesamtErgebnis)/ergebnis)*100);
+      potenzreihe *= potenz; // VorherigenWert aktualisieren
+      gesamtErgebnis += vorzeichen*potenzreihe/i; // Ergebnisse aufsummieren
+      printf("%3d -> %3.25f - %2.9f %%\n", i, gesamtErgebnis, ((ergebnis - gesamtErgebnis)/ergebnis)*100);
    }
    printf("\n");
    printf("Das Ergebnis vom nat\x81rlicher Logarithmus von %.5e betr\x84gt %.5e\n", eingabe, gesamtErgebnis);
