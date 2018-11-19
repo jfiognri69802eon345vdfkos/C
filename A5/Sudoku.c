@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 void displayGame(void);
+void eingabeAbfragen(void);
 
 static int matrix[9][9] = {{4,1,0,0,6,5,0,0,7},
                            {0,0,6,0,0,7,4,8,0},
