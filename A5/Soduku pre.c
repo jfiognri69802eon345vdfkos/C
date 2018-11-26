@@ -1,0 +1,135 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <windows.h>
+
+
+
+
+    int pZ(int eingabeZeile){
+      int a = eingabeZeile;
+       if (a==1337){
+        exit(0);}
+        if (a%10==0 && a!=0){
+            a = a;
+        }
+    return a;}
+
+
+    int pS(int eingabeSpalte){
+        int b = eingabeSpalte;
+        if (b==1337){
+          exit(0);}
+          if(b%10==0 && b!=0){
+            b = b;}
+            return b;
+          }
+
+
+        int pW(int eingabeWert){
+        int c = eingabeWert;
+        if (c ==1337){
+            exit(0);}
+            if (c%10==0 && c!=0){
+                c=c;
+            }
+                return c;
+        }
+
+
+
+
+
+static int feldA[9][9] = {{6,3,5,7,2,1,8,4,9},      //Rätsel 1 //static davor schreiben = global lverfügbar
+                    {2,7,8,9,4,5,1,6,3},
+                    {9,1,4,6,8,3,7,2,5},
+                    {4,9,7,8,5,2,6,3,1},
+                    {3,8,6,1,9,4,2,5,7},
+                    {1,5,2,3,7,6,9,8,4},
+                    {5,4,1,2,6,7,3,9,8},
+                    {7,6,9,4,3,8,5,1,2},
+                    {8,2,3,5,1,9,4,7,6}};
+
+static int feldAstart[9][9] =  {{6,3,5,7,2,1,8,4,9},      //Rätsel 1 anfang
+                            {0,0,8,9,4,5,1,6,3},
+                            {0,1,4,6,8,3,7,2,5},
+                            {0,9,7,8,0,2,6,3,1},
+                            {3,8,6,1,9,4,2,5,7},
+                            {1,5,2,3,7,6,0,8,4},
+                            {5,4,1,0,6,7,3,9,8},
+                            {7,6,9,4,3,8,5,1,2},
+                            {8,2,3,5,1,9,4,7,6}};
+
+
+
+
+
+
+void SpielStart(){
+printf("   |  1  2  3  |  4  5  6  |  7  8  9  |\n");
+printf("---+-----------+-----------+-----------+\n");
+
+for(int i=0;i<9;i++){
+   if (i==3 || i==6){
+                    printf("---+-----------+-----------+-----------+\n");}
+    printf("  %d|", i+1);
+    for(int j=0;j<9;j++){
+        if(feldAstart[i][j] == 0){
+            printf("   ");}
+        else{
+        printf("  %d", feldAstart[i][j]);}
+
+       if (j==2 || j==5 || j==8){
+        printf("  |");}
+        if (j == 9){
+            printf("\n");}
+         }printf("\n");}
+
+     printf("---+-----------+-----------+-----------+\n");
+}
+
+int main (){
+    int eingabeZeile;
+    int eingabeSpalte;
+    int eingabeWert;
+    int Z, S, W;
+    int i = 0;
+
+
+while(i<=1000) {
+SpielStart();
+
+
+
+printf("To exit type 1337\n");
+printf("Eingabe fur Zeile \n");
+    scanf("%d", &eingabeZeile);
+        Z = pZ(eingabeZeile-1);
+
+
+
+printf("Eingabe fur Spalte\n");
+   scanf("%d", &eingabeSpalte);
+        S = pS(eingabeSpalte-1);
+
+
+
+printf("Eingabe fur Wert\n");
+    scanf("%d", &eingabeWert);
+        W = pW(eingabeWert);
+        if (W == feldA[Z][S]){
+            (*&feldA)[Z][S] = W;
+            printf("Wert ist gultig\n");
+            feldAstart [Z][S] = W;
+        }
+    else printf("Falscher Wert an dieser Stelle\n");
+
+
+
+
+    SpielStart();
+    printf("\n");
+    i+=1;
+}
+return 0;
+}
