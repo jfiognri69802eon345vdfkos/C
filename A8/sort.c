@@ -73,10 +73,12 @@ void mergeList(int*links, int*rechts, int*arrayerg, int elemente, int l, int r){
    int ilinks = 0;
    int irechts = 0;
    for (int i = 0; i < elemente; i++) {
-      if ((links[ilinks] <= rechts[irechts] && ilinks < l) || irechts <= r) {
+      if ((links[ilinks] <= rechts[irechts] && ilinks < l) || irechts >= r) {
+          printf("-> %d\n", links[ilinks]);
          arrayerg[i] = links[ilinks];
          ilinks++;
       } else {
+          printf("--> %d\n", rechts[irechts]);
          arrayerg[i] = rechts[irechts];
          irechts++;
       }
