@@ -13,40 +13,33 @@ void Bubblesort(int*pointer, int size) {
    for (int i = 0; i < size; i++) {
       getauscht = 0;
       for (int j = 0; j < size - i - 1; j++) { // jedesmal eine position weniger da die letzte position richtig ist.
-         // printf("inhalt %4d zu %4d\n", pointer[j], pointer[j+1]);
          if (pointer[j] > pointer[j + 1]) { // tauschen nach größe
-            // printf("tauschen\n");
             getauscht++;
             flip(&pointer[j],&pointer[j + 1]);
          }
       }
       if (getauscht == 0) { // abbrechen wenn nichts mehr getauscht werden kann
          break;
-         // printf("eigentlich fertig\n");
       }
    }
 }
 
-void*allocate(int n){
+void*allocate(int n){ // Speicherplatz reservieren
    void*p;
-   p = calloc(n, sizeof(int));
+   p = calloc(n, sizeof(int)); // Speicherplatz reservieren
    if(p == NULL) {
       printf("Memory error has successfully stop the program\n");
-      exit(1);
+      exit(1); // wenn es fehl schlägt
    }
    return p;
 }
 
-void Mergesort(int elemente, int*array){
-   for (int i = 0; i < elemente; i++) {
-      printf("%d, ", array[i]);
-   }
-   printf("\n");
-   if (elemente <= 1) {
+void Mergesort(int elemente, int*array){ // sortieren durch splitten
+   if (elemente <= 1) { // wenn nur noch ein Element über ist return
       return;
    }
-   int*arrayerg = allocate(elemente);
-   int links = (double) elemente / 2.0;
+   int*arrayerg = allocate(elemente); // arrays erstellen
+   int links = (double) elemente / 2.0; // spliten in 2 arrays
    int rechts = elemente - links;
    int*ilinks = allocate(links);
    int*irechts = allocate(rechts);
@@ -56,15 +49,13 @@ void Mergesort(int elemente, int*array){
    for (int r = 0; r < rechts; r++) {
       irechts[r] = array[links + r];
    }
-   Mergesort(links, ilinks);
-   Mergesort(rechts, irechts);
+   Mergesort(links, ilinks); // splitten des linken Teils
+   Mergesort(rechts, irechts); // splitten des rechten Teils
    mergeList(ilinks, irechts, arrayerg, elemente, links, rechts);
-   for (int i = 0; i < elemente; i++) {
+   for (int i = 0; i < elemente; i++) { // übertragen in das array, ein layer oben.
      array[i] = arrayerg[i];
-     printf("%d, ", array[i]);
    }
-   printf("\n");
-   free(arrayerg);
+   free(arrayerg); // Speicherplatz wiederfreigeben
    free(ilinks);
    free(irechts);
 }
@@ -73,12 +64,10 @@ void mergeList(int*links, int*rechts, int*arrayerg, int elemente, int l, int r){
    int ilinks = 0;
    int irechts = 0;
    for (int i = 0; i < elemente; i++) {
-      if ((links[ilinks] <= rechts[irechts] && ilinks < l) || irechts >= r) {
-          printf("-> %d\n", links[ilinks]);
+      if ((links[ilinks] <= rechts[irechts] && ilinks < l) || irechts >= r) { // mergen der Arrays zum übernehmen.
          arrayerg[i] = links[ilinks];
          ilinks++;
       } else {
-          printf("--> %d\n", rechts[irechts]);
          arrayerg[i] = rechts[irechts];
          irechts++;
       }
