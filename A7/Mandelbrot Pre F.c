@@ -11,8 +11,8 @@ void toMath(double *x, double *y, int minX,int minY, int maxX, int maxY,double w
 
 int Tiefe(int n, double *cx, double *cy,double zn){
 
-    zn = (zn*zn) + ((*cy) + (*cx));
-   if ((((*cx)*(*cx) + ((*cy)*(*cy))) >= 2)) {
+    zn = (zn*zn)+(cy+cx); 
+    if ((((*cx)*(*cx)+(cy*cy))>=2)){
        return n;}
     if(n==TT){
         return (TT);}
