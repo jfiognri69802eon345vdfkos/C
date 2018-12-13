@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
-#include "sort.c"
+#include "sort.h"
+
 static HANDLE hConsole;
 static int aktuellesMenu = 0;
 static int arrayLenght = 0;
@@ -19,7 +20,7 @@ int eingabepruefen(){ // menü eingaben kontrollieren
    SetConsoleTextAttribute(hConsole, 15);
    printf("Eingabe: ");
    scanf("%i", &eingabe);
-   if(eingabe > 0 && eingabe < 7) {
+   if(eingabe > 0 && eingabe < 8) {
       return eingabe;
    }
    return 0;
@@ -48,7 +49,7 @@ int*arrayGroesseAendern(int size){ // array für zahlen erstellen
 }
 
 
-int main(int argc, char const*argv[]) {
+int main() {
    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
    // aktuellesMenu = eingabepruefen();
    int*pointer = NULL;
@@ -68,7 +69,7 @@ int main(int argc, char const*argv[]) {
             printf("Alten Speicher freigeben\n");
             free(pointer);
          }
-         pointer = arrayGroesseAendern(eingabepruefung(1,50)); // neues array anlegen
+         pointer = arrayGroesseAendern(eingabepruefung(1,100000)); // neues array anlegen
          aktuellesMenu = 0;
          aktuellesMenu = 3; // mit Zufallszahlen belegen
          skipeing = 1;
@@ -147,6 +148,23 @@ int main(int argc, char const*argv[]) {
       case 5:
          if (arrayLenght > 0) { // sortieren durch Mergesort
             Mergesort(arrayLenght, pointer);
+            SetConsoleTextAttribute(hConsole, 6);
+            printf("Aktuelles Array\n");
+            SetConsoleTextAttribute(hConsole, 15);
+            for (int i = 0; i < arrayLenght; i++) { // ausgabe des aktuellen stands
+               printf("%d, ", pointer[i]);
+            }
+            printf("\n");
+         }else{ // Abbruch falls noch kein Array angelegt wurde
+            SetConsoleTextAttribute(hConsole, 12);
+            printf("Noch kein Array\n Array-Gr\x94%ce festlegen\n", 225);
+            aktuellesMenu = 1;
+            skipeing = 1;
+         }
+         break;
+      case 7:
+         if (arrayLenght > 0) {
+            umdrehen(pointer, arrayLenght);
             SetConsoleTextAttribute(hConsole, 6);
             printf("Aktuelles Array\n");
             SetConsoleTextAttribute(hConsole, 15);
