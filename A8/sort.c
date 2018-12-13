@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-void mergeList(int*,int*,int*,int,int,int);
+#include "sort.h"
 
 void flip(int*a, int*b){
    int c = *a; // Temporär zwischen speichern von a
@@ -22,6 +22,13 @@ void Bubblesort(int*pointer, int size) {
          break;
       }
    }
+}
+
+void umdrehen(int*pointer, int size){
+  int schleife = size/2;
+  for (int i = 0; i < schleife; i++) {
+    flip(&pointer[i], &pointer[size-i-1]);
+  }
 }
 
 void*allocate(int n){ // Speicherplatz reservieren
