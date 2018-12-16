@@ -49,15 +49,26 @@ void Spielzug(int z){
    while(g != 0) {
       printf("   Zeile eingeben\n");
       scanf("%d", &zeile );
+      if( zeile <= 0 || zeile >= 3) {
+         printf("Eingabe ist ungultig\n");
+      }else{
 
-      printf("   Spalte  eingeben\n");
-      scanf("%d", &spalte );
-      if (spielspeicher[zeile - 1][spalte - 1] != 0) {
-         printf("Feld ist nicht frei\n");
+         printf("   Spalte  eingeben\n");
+         scanf("%d", &spalte );
+         if(spalte <= 0  || spalte >= 3 ) {
+            printf("Eingabe ist ungueltig\n");
+
+
+         }else{
+
+            if (spielspeicher[zeile - 1][spalte - 1] != 0) {
+               printf("Feld ist nicht frei\n");
+            }
+            else {spielspeicher[zeile - 1][spalte - 1] = z;
+                  g = 0;
+                  printf("Spielzug ist erlaubt\n");}
+         }
       }
-      else {spielspeicher[zeile - 1][spalte - 1] = z;
-            g = 0;
-            printf("Spielzug ist erlaubt\n");}
    }
 }
 int Gewonnen(){
@@ -135,7 +146,7 @@ int main(){
       n = Gewonnen();
       k = draw();
    }
-Feld();
+   Feld();
 
 
 
