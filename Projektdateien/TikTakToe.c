@@ -127,7 +127,7 @@ int main(){
 
 
    printf("   Das Spiel beginnt");
-   if(n != 0 || k != 0) {
+   while(n != 0 || k != 0) {
       Feld();
       printf("   Spieler %d ist am Zug\n", zug[z]);
       Spielzug(zug[z]);
