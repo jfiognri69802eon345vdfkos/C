@@ -49,13 +49,13 @@ void Spielzug(int z){
    while(g != 0) {
       printf("   Zeile eingeben\n");
       scanf("%d", &zeile );
-      if( zeile <= 0 || zeile >= 3) {
+      if( zeile <= 0 || zeile >= 4) {
          printf("Eingabe ist ungultig\n");
       }else{
 
          printf("   Spalte  eingeben\n");
          scanf("%d", &spalte );
-         if(spalte <= 0  || spalte >= 3 ) {
+         if(spalte <= 0  || spalte >= 4 ) {
             printf("Eingabe ist ungueltig\n");
 
 
@@ -153,3 +153,4 @@ int main(){
 
    return 0;
 }
+
