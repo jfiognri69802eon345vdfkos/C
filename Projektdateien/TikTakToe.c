@@ -16,11 +16,14 @@ static int zug[9] = {1,2,1,2,1,2,1,2,1};
 
 void Feld() {
    printf("\n");
-   printf("  +---+---+---+");
+   printf("      1   2   3  \n");
+   printf("     +---+---+---+\n");
+
    for(int i = 0; i < 3; i++) {
-      printf("  |");
+      printf("   %d |",i + 1);
+
       for(int j = 0; j < 3; j++) {
-         if(spielspeicher[i][j] == 0) {
+         if((spielspeicher[i][j]) == 0) {
             printf("   |");
          }
          if(spielspeicher[i][j] == 1) {
@@ -30,81 +33,110 @@ void Feld() {
             printf(" O |");
          }
       } printf("\n");
+      printf("     +---+---+---+\n");
    }
-   printf("  +---+---+---+");
+
 }
 
 
 
 
-void Spielzug(int z, int *spalte, int  *zeile){
+void Spielzug(int z){
 
-   int n = 1;
-   while(n) {
-      printf("Zeile eingeben\n");
-      scanf("%d\n", zeile );
+   int zeile;
+   int spalte;
+   int g = 1;
+   while(g != 0) {
+      printf("   Zeile eingeben\n");
+      scanf("%d", &zeile );
 
-      printf("Spalte  eingeben\n");
-      scanf("%d\n", spalte );
+      printf("   Spalte  eingeben\n");
+      scanf("%d", &spalte );
+      if (spielspeicher[zeile - 1][spalte - 1] != 0) {
+         printf("Feld ist nicht frei\n");
+      }
+      else {spielspeicher[zeile - 1][spalte - 1] = z;
+            g = 0;
+            printf("Spielzug ist erlaubt\n");}
+   }
+}
+int Gewonnen(){
 
-      if (spielspeicher[*zeile][*spalte] != 0) {
-         printf("Feld ist nicht frei");
-      }else{
-        spielspeicher[*zeile][*spalte] = z;
-        n = 0;
+   int h;
+
+   if(((spielspeicher[0][0] == 1) && (spielspeicher[0][1] == 1) && (spielspeicher[0][2] == 1)) ||
+      ((spielspeicher[1][0] == 1) && (spielspeicher[1][1] == 1) && (spielspeicher[1][2] == 1)) ||
+      ((spielspeicher[2][0] == 1) && (spielspeicher[2][1] == 1) && (spielspeicher[2][2] == 1)) ||
+
+      ((spielspeicher[0][0] == 1) && (spielspeicher[1][0] == 1) && (spielspeicher[2][0] == 1)) ||
+      ((spielspeicher[0][1] == 1) && (spielspeicher[1][1] == 1) && (spielspeicher[2][1] == 1)) ||
+      ((spielspeicher[0][2] == 1) && (spielspeicher[1][2] == 1) && (spielspeicher[2][2] == 1)) ||
+
+      ((spielspeicher[0][0] == 1) && (spielspeicher[1][1] == 1) && (spielspeicher[2][2] == 1)) ||
+      ((spielspeicher[0][2] == 1) && (spielspeicher[1][1] == 1) && (spielspeicher[2][0] == 1))) {
+      printf("Spieler 1 hat gewonnen");
+      h = 0;
+   }
+
+   if(((spielspeicher[0][0] == 2) && (spielspeicher[0][1] == 2) && (spielspeicher[0][2] == 2)) ||
+      ((spielspeicher[1][0] == 2) && (spielspeicher[1][1] == 2) && (spielspeicher[1][2] == 2)) ||
+      ((spielspeicher[2][0] == 2) && (spielspeicher[2][1] == 2) && (spielspeicher[2][2] == 2)) ||
+
+      ((spielspeicher[0][0] == 2) && (spielspeicher[1][0] == 2) && (spielspeicher[2][0] == 2)) ||
+      ((spielspeicher[0][1] == 2) && (spielspeicher[1][1] == 2) && (spielspeicher[2][1] == 2)) ||
+      ((spielspeicher[0][2] == 2) && (spielspeicher[1][2] == 2) && (spielspeicher[2][2] == 2)) ||
+
+      ((spielspeicher[0][0] == 2) && (spielspeicher[1][1] == 2) && (spielspeicher[2][2] == 2)) ||
+      ((spielspeicher[0][2] == 2) && (spielspeicher[1][1] == 2) && (spielspeicher[2][0] == 2))) {
+      printf("Spieler 2 hat gewonnen");
+      h = 0;
+   }
+   else{h = 1;}
+   return h;
+}
+
+int draw(){
+   int summ = 0;
+   int summ_dd;
+   int z = 1;
+
+   for(int i = 0; i < 3; i++) {
+      for(int j = 0; j < 3; j++) {
+         summ =  spielspeicher[i][j];
+         summ_dd += summ;
       }
    }
-}
-
-int Gewonnen(){
-   if((spielspeicher[0][0] == 1) && (spielspeicher[0][1] == 1) && (spielspeicher[0][2] == 1) ||
-      (spielspeicher[1][0] == 1) && (spielspeicher[1][1] == 1) && (spielspeicher[1][2] == 1) ||
-      (spielspeicher[2][0] == 1) && (spielspeicher[2][1] == 1) && (spielspeicher[2][2] == 1) ||
-
-      (spielspeicher[0][0] == 1) && (spielspeicher[1][0] == 1) && (spielspeicher[2][0] == 1) ||
-      (spielspeicher[0][1] == 1) && (spielspeicher[1][1] == 1) && (spielspeicher[2][1] == 1) ||
-      (spielspeicher[0][2] == 1) && (spielspeicher[1][2] == 1) && (spielspeicher[2][2] == 1) ||
-
-      (spielspeicher[0][0] == 1) && (spielspeicher[1][1] == 1) && (spielspeicher[2][2] == 1) ||
-      (spielspeicher[0][2] == 1) && (spielspeicher[1][1] == 1) && (spielspeicher[2][0] == 1)) {
-      printf("Spieler 1 hat gewonnen");
+   if (summ_dd == 9) {
+      printf("Unendschiden");
+      z = 0;
    }
 
-   if((spielspeicher[0][0] == 2) && (spielspeicher[0][1] == 2) && (spielspeicher[0][2] == 2) ||
-      (spielspeicher[1][0] == 2) && (spielspeicher[1][1] == 2) && (spielspeicher[1][2] == 2) ||
-      (spielspeicher[2][0] == 2) && (spielspeicher[2][1] == 2) && (spielspeicher[2][2] == 2) ||
-
-      (spielspeicher[0][0] == 2) && (spielspeicher[1][0] == 2) && (spielspeicher[2][0] == 2) ||
-      (spielspeicher[0][1] == 2) && (spielspeicher[1][1] == 2) && (spielspeicher[2][1] == 2) ||
-      (spielspeicher[0][2] == 2) && (spielspeicher[1][2] == 2) && (spielspeicher[2][2] == 2) ||
-
-      (spielspeicher[0][0] == 2) && (spielspeicher[1][1] == 2) && (spielspeicher[2][2] == 2) ||
-      (spielspeicher[0][2] == 2) && (spielspeicher[1][1] == 2) && (spielspeicher[2][0] == 2)) {
-      printf("Spieler 2 hat gewonnen");
-   }else{
-     return 0;
-   }
+   return z;
 }
+
+
 
 int main(){
    int n = 1;
-   int zeile = 0;
-   int spalte = 0;
+   int zeile;
+   int spalte;
    int*zp;
    int*sp;
-   int eingabe;
    int z = 0;
+   int k = 0;
 
-   zp = &(zeile);
-   sp = &(spalte);
-   printf("Das Speiel beginnt");
-   while(n) {
+
+   printf("   Das Spiel beginnt");
+   if(n != 0 || k != 0) {
       Feld();
-      printf("Speiler %d ist am Zug\n", zug[z]);
-      Spielzug(z, sp, zp);
+      printf("   Spieler %d ist am Zug\n", zug[z]);
+      Spielzug(zug[z]);
       z++;
       n = Gewonnen();
+      k = draw();
    }
+Feld();
+
 
 
 
