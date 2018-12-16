@@ -16,7 +16,7 @@ static int zug[9] = {1,2,1,2,1,2,1,2,1};
 
 void Feld() {
    printf("\n");
-   printf("  +---+---+---+");
+   printf("  +---+---+---+\n");
    for(int i = 0; i < 3; i++) {
       printf("  |");
       for(int j = 0; j < 3; j++) {
@@ -29,9 +29,10 @@ void Feld() {
          if(spielspeicher[i][j] == 2) {
             printf(" O |");
          }
-      } printf("\n");
+      }
+      printf("\n");
    }
-   printf("  +---+---+---+");
+   printf("  +---+---+---+\n");
 }
 
 
@@ -42,15 +43,15 @@ void Spielzug(int z, int *spalte, int  *zeile){
    int n = 1;
    while(n) {
       printf("Zeile eingeben\n");
-      scanf("%d\n", zeile );
+      scanf("%d", zeile );
 
       printf("Spalte  eingeben\n");
-      scanf("%d\n", spalte );
+      scanf("%d", spalte );
 
       if (spielspeicher[*zeile][*spalte] != 0) {
          printf("Feld ist nicht frei");
       }else{
-        spielspeicher[*zeile][*spalte] = z;
+        spielspeicher[*zeile][*spalte] = zug[z];
         n = 0;
       }
    }
@@ -82,7 +83,7 @@ int Gewonnen(){
       (spielspeicher[0][2] == 2) && (spielspeicher[1][1] == 2) && (spielspeicher[2][0] == 2)) {
       printf("Spieler 2 hat gewonnen");
    }else{
-     return 0;
+     return 1;
    }
 }
 
@@ -105,8 +106,5 @@ int main(){
       z++;
       n = Gewonnen();
    }
-
-
-
    return 0;
 }
