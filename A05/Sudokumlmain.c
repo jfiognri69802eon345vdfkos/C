@@ -15,32 +15,32 @@ const int SUDOKU[9][9] =  //besser als #define, da typsicher
 };
 int FELD[9][9];//Spielfeld
 
-/*regelchek überprüft die 3 Regeln des Sudoku.
+/*regelchek Ã¼berprÃ¼ft die 3 Regeln des Sudoku.
   Sobald eine gebrochen wird, gibt das Programm eine dementsprechende Fehlermeldung aus.
 */
 int regelcheck (int lul)
 {
     for(int wert=1; wert<=9; wert++)
     {
-        int spz[9] = {0,0,0,0,0,0,0,0,0};//spaltenzähler
-        int qdz[3][3] = {{0,0,0},{0,0,0},{0,0,0}};//quadratzähler
+        int spz[9] = {0,0,0,0,0,0,0,0,0};//spaltenzÃ¤hler
+        int qdz[3][3] = {{0,0,0},{0,0,0},{0,0,0}};//quadratzÃ¤hler
         for(int zeile = 0; zeile < 9; zeile++){//initialisierung zeile
-            int zlz = 0;                       //zeilenzähler
+            int zlz = 0;                       //zeilenzÃ¤hler
         for(int spalte = 0; spalte <9; spalte++){//initialisierung spalte
-            if(FELD[zeile][spalte]==wert){    //überprüft
+            if(FELD[zeile][spalte]==wert){    //Ã¼berprÃ¼ft
             if(++zlz > 1){                       //Aufkommen in der Zeile
             if(lul){
                 printf("Fehler in Zeile %d, Spalte %d. %d kommt in dieser Zeile mehr als ein mal vor!\n",zeile + 1,spalte + 1,wert);
             }
             return 0;
             }
-            if(++spz[spalte] > 1){               //überprüft Aufkommen in der Spalte
+            if(++spz[spalte] > 1){               //Ã¼berprÃ¼ft Aufkommen in der Spalte
             if(lul){
                 printf("Fehler in Zeile %d, Spalte %d. $d kommt in dieser Spalte mehr als ein mal vor!\n",zeile + 1,spalte + 1,wert);
             }
             return 0;
             }
-            if(qdz[zeile / 3][spalte / 3] > 1){ //überprüft Aufkommen im 3x3 Quadrat
+            if(qdz[zeile / 3][spalte / 3] > 1){ //Ã¼berprÃ¼ft Aufkommen im 3x3 Quadrat
             if(lul){
                 printf("Fehler in Zeile %d, Spalte %d. %d kommt in diesem Quadrat mehr als ein mal vor!\n", zeile + 1,spalte + 1,wert);
             }
@@ -58,7 +58,7 @@ void feld_ausgabe(){
 
     for(int zeile = 0; zeile < 9; zeile++){ //Gibt Feld aus
         printf("%d |", zeile + 1);
-        /*Gibt ein zuvor mit 0 gefülltes Feld als leeres Feld aus oder druckt die vordefinierte Zahl*/
+        /*Gibt ein zuvor mit 0 gefÃ¼lltes Feld als leeres Feld aus oder druckt die vordefinierte Zahl*/
     for(int spalte = 0; spalte < 9; spalte++){
         if(FELD[zeile][spalte] == 0){
         printf("   ");
@@ -96,17 +96,17 @@ while(1){ //Schleife mit definiertem Ende
         if(eingabe == 1337){//Abbruchbedingung
             break;//Abbruch
         }
-        /*Prüft ob der eingegebene Wert in Ordnung ist. (zwischen 111 und 999*/
-    int zeile  = (eingabe % 1000) / 100; //Prüft Zeile 1-9
-    int spalte = (eingabe % 100 ) / 10 ; //Prüft Spalte 1-9
-    int wert   = (eingabe % 10  )      ; //Prüft den Wert/ die Ziffer
+        /*PrÃ¼ft ob der eingegebene Wert in Ordnung ist. (zwischen 111 und 999*/
+    int zeile  = (eingabe % 1000) / 100; //PrÃ¼ft Zeile 1-9
+    int spalte = (eingabe % 100 ) / 10 ; //PrÃ¼ft Spalte 1-9
+    int wert   = (eingabe % 10  )      ; //PrÃ¼ft den Wert/ die Ziffer
     if((eingabe > 999) || (eingabe < 111) || (zeile == 0) || (spalte == 0)){
         feld_ausgabe();
         printf("Fehlerhafte Eingabe!\nEingabe:\n");
         continue;
         }
-        /*Prüft nachdem der Wert als gültig Erkannt wurde, ob er in das angegebene Feld einsetzbar ist
-        Z.B. könnte das Feld bereits gefüllt sein*/
+        /*PrÃ¼ft nachdem der Wert als gÃ¼ltig Erkannt wurde, ob er in das angegebene Feld einsetzbar ist
+        Z.B. kÃ¶nnte das Feld bereits gefÃ¼llt sein*/
     if (SUDOKU[zeile - 1][spalte - 1] != 0);{
        feld_ausgabe();
        printf("Sie d\201rfen in Feld %d %d nichts eintragen!\nEingabe:\n",zeile ,spalte );
