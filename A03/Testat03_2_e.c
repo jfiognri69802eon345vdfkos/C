@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main(){
-double e = 0.0;      /*Variabeln für e*/
+double e = 0.0;      /*Variabeln fÃ¼r e*/
 double eold = 0.0;
 int i=0;              /*index*/
 double fspeicher = 1.0;
