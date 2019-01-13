@@ -9,7 +9,7 @@ void description()
     printf("*      Zum beenden geben Sie bitte 1337 ein.             *\n");
     printf("*                                                        *\n");
     printf("**********************************************************\n\n\n");
-/*  Lösung:
+/*  LÃ¶sung:
     |9|1|2|8|4|6|5|7|3|
     |6|8|3|5|7|1|2|9|4|
     |4|5|7|3|2|9|1|6|8|
